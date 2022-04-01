@@ -20,6 +20,10 @@ function Gioco(){
         console.log(sommaNum)
     }
     console.log(check())
+    if(check() == null){
+        alert("seleziona un opzione corretta");
+        return;
+    }
     if(check() === true){
         let pari = true;
         let dispari = false;
@@ -34,8 +38,7 @@ function Gioco(){
 function check(){
     let userPari = document.getElementById("pari");
     let userDispari = document.getElementById("dispari");
-    if(userPari.checked && userDispari.checked){
-        alert("Puoi selezionare solo un opzione");
+    if(userPari.checked && userDispari.checked || userPari.unchecked && userDispari.unchecked ){
         return null;
     }
     if(userPari.checked){
