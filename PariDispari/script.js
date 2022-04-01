@@ -7,13 +7,36 @@ Dichiariamo chi ha vinto. */
 let userNum = document.getElementById("num").value;
 let button = document.getElementById("btn");
 
-button.addEventListener("click", Gioco)
+button.addEventListener("click", Gioco);
+
+function Gioco(){
+    let userNum = parseInt(document.getElementById("num").value);
+    let pcNum = random();
+    console.log(pcNum);
+    if(userNum > 5 || userNum < 0 || isNaN(userNum) ){
+        alert("Inserisci un valore compreso tra 1 e 5");
+    }else{
+        sommaNum = sommaNumeri(userNum, pcNum);
+        console.log(sommaNum)
+    }
+    console.log(check())
+    if(check() === true){
+        let pari = true;
+        let dispari = false;
+        pariDispari(sommaNum, pari, dispari);
+    } else{
+        let pari = false;
+        let dispari = true;
+        pariDispari(sommaNum, pari, dispari);
+    }
+}
+
 function check(){
     let userPari = document.getElementById("pari");
     let userDispari = document.getElementById("dispari");
     if(userPari.checked && userDispari.checked){
-        alert("Puoi selezionarne solo uno!")
-        userPari = false;
+        alert("Puoi selezionare solo un opzione");
+        return null;
     }
     if(userPari.checked){
         userPari = true;
@@ -37,38 +60,20 @@ function sommaNumeri(num1, num2){
     return risultato;
 }
 
-function pariDispari(num, check){
+function pariDispari(num, pari, dispari){
+    console.log(pari, dispari)
     if(num %2 === 0){
-        if(check){
+        if(pari){
             alert("Il numero è pari, HAI VINTO!")
         } else {
             alert("Il numero è pari, HAI PERSO!")
         }
     } else{
-        if(!check){
+        if(dispari){
             alert("Il numero è dispari, HAI VINTO!")
         } else {
             alert("Il numero è dispari, HAI PERSO!")
         }
     }
     
-}
-function Gioco(){
-    let userNum = parseInt(document.getElementById("num").value);
-    let pcNum = random();
-    console.log(pcNum);
-    if(userNum > 5 || userNum < 0 || isNaN(userNum) ){
-        alert("Inserisci un valore compreso tra 1 e 5");
-        userNum = "";
-    }else{
-        sommaNum = sommaNumeri(userNum, pcNum);
-        console.log(sommaNum)
-    }
-    if(check() === true){
-        let check = true;
-        pariDispari(sommaNum, check);
-    } else{
-        let check = false;
-        pariDispari(sommaNum, check);
-    }
 }
